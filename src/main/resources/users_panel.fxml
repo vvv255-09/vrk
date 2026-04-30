@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="UsersPanelController"
+      spacing="12"
+      style="-fx-padding: 16; -fx-background-color: #f8f8f8;">
 
-</AnchorPane>
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <Label text="Пользователи"
+               style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="+ Добавить пользователя" onAction="#handleAdd"
+                style="-fx-background-color: #0F6E56; -fx-text-fill: white;
+                       -fx-padding: 8 16; -fx-background-radius: 8;"/>
+    </HBox>
+
+    <TableView fx:id="usersTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId"       text="ID"      prefWidth="50"/>
+            <TableColumn fx:id="colFullName" text="ФИО"     prefWidth="200"/>
+            <TableColumn fx:id="colLogin"    text="Логин"   prefWidth="130"/>
+            <TableColumn fx:id="colRole"     text="Роль"    prefWidth="100"/>
+            <TableColumn fx:id="colActions"  text="Действия" prefWidth="120"/>
+        </columns>
+    </TableView>
+</VBox>

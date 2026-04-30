@@ -4,7 +4,8 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="MainController"
-            prefWidth="1050" prefHeight="700">
+            fx:id="rootPane"
+            prefWidth="900" prefHeight="550">
 
     <!-- Левое меню -->
     <left>

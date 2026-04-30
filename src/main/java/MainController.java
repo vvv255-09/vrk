@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class MainController {
     @FXML private TableColumn<Product, String> colMinQuantity;
     @FXML private TableColumn<Product, String> colPrice;
     @FXML private TableColumn<Product, String> colActions;
+    @FXML private BorderPane rootPane; // добавь это поле
 
     private Database db;
     private User currentUser;
@@ -165,12 +168,30 @@ public class MainController {
         });
     }
 
+    @FXML
+    private void showUsers() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/users_panel.fxml"));
+            VBox usersPanel = loader.load();
+
+            UsersPanelController controller = loader.getController();
+            controller.setDatabase(db);
+
+            rootPane.setCenter(usersPanel);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     // --- Меню навигации ---
-    @FXML private void showProducts()  { loadProducts(); }
+    @FXML
+    private void showProducts() {
+        loadProducts();
+    }
     @FXML private void showReceipts()  { showInfo("Раздел «Поступления» — скоро."); }
     @FXML private void showExpenses()  { showInfo("Раздел «Расходы» — скоро."); }
     @FXML private void showLowStock()  { showInfo("Раздел «Низкий остаток» — скоро."); }
-    @FXML private void showUsers()     { showInfo("Раздел «Пользователи» — скоро."); }
 
     @FXML
     private void logout() {
