@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="LoginController"
+      alignment="CENTER"
+      spacing="12"
+      style="-fx-background-color: #f4f4f4;"
+      prefWidth="380" prefHeight="520">
+
+    <VBox alignment="CENTER" spacing="14"
+          style="-fx-background-color: white; -fx-padding: 40;
+                 -fx-background-radius: 12; -fx-max-width: 320;">
+
+        <Label text="Склад — вход в систему"
+               style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        <Label text="Введите свои данные для входа"
+               style="-fx-text-fill: gray; -fx-font-size: 13px;"/>
+
+        <VBox spacing="6">
+            <Label text="Логин" style="-fx-font-size: 13px; -fx-text-fill: #555;"/>
+            <TextField fx:id="loginField" promptText="Введите логин" prefWidth="280"/>
+        </VBox>
+
+        <VBox spacing="6">
+            <Label text="Пароль" style="-fx-font-size: 13px; -fx-text-fill: #555;"/>
+            <PasswordField fx:id="passwordField" promptText="Введите пароль" prefWidth="280"/>
+        </VBox>
+
+        <Label fx:id="errorLabel" style="-fx-text-fill: red; -fx-font-size: 12px;" text=""/>
+
+        <Button text="Войти" onAction="#handleLogin" prefWidth="280"
+                style="-fx-background-color: #185FA5; -fx-text-fill: white;
+                       -fx-font-size: 14px; -fx-padding: 10; -fx-background-radius: 8;"/>
+
+        <Label text="Нет аккаунта?"
+               style="-fx-text-fill: gray; -fx-font-size: 12px;"/>
+
+        <Button text="Зарегистрироваться" onAction="#openRegister" prefWidth="280"
+                style="-fx-background-color: transparent; -fx-text-fill: #185FA5;
+                       -fx-font-size: 13px; -fx-border-color: #185FA5;
+                       -fx-border-radius: 8; -fx-padding: 8; -fx-background-radius: 8;"/>
+    </VBox>
+</VBox>

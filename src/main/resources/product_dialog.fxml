@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ProductDialogController"
+      spacing="14"
+      style="-fx-padding: 30; -fx-background-color: white;"
+      prefWidth="360">
+
+    <Label fx:id="titleLabel" text="Добавить товар"
+           style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+    <VBox spacing="6">
+        <Label text="Название" style="-fx-font-size: 13px; -fx-text-fill: #555;"/>
+        <TextField fx:id="nameField" promptText="Например: Цемент М400" prefWidth="300"/>
+    </VBox>
+
+    <VBox spacing="6">
+        <Label text="Категория" style="-fx-font-size: 13px; -fx-text-fill: #555;"/>
+        <TextField fx:id="categoryField" promptText="Например: Стройматериалы" prefWidth="300"/>
+    </VBox>
+
+    <VBox spacing="6">
+        <Label text="Единица измерения" style="-fx-font-size: 13px; -fx-text-fill: #555;"/>
+        <ComboBox fx:id="unitBox" prefWidth="300"/>
+    </VBox>
+
+    <HBox spacing="12">
+        <VBox spacing="6" HBox.hgrow="ALWAYS">
+            <Label text="Количество" style="-fx-font-size: 13px; -fx-text-fill: #555;"/>
+            <TextField fx:id="quantityField" promptText="0"/>
+        </VBox>
+        <VBox spacing="6" HBox.hgrow="ALWAYS">
+            <Label text="Мин. остаток" style="-fx-font-size: 13px; -fx-text-fill: #555;"/>
+            <TextField fx:id="minQuantityField" promptText="0"/>
+        </VBox>
+    </HBox>
+
+    <VBox spacing="6">
+        <Label text="Цена" style="-fx-font-size: 13px; -fx-text-fill: #555;"/>
+        <TextField fx:id="priceField" promptText="0.00"/>
+    </VBox>
+
+    <Label fx:id="errorLabel" style="-fx-text-fill: red; -fx-font-size: 12px;" text=""/>
+
+    <HBox spacing="10">
+        <Button fx:id="saveBtn" text="Сохранить" onAction="#handleSave"
+                prefWidth="145"
+                style="-fx-background-color: #185FA5; -fx-text-fill: white;
+                       -fx-padding: 10; -fx-background-radius: 8;"/>
+        <Button text="Отмена" onAction="#handleCancel"
+                prefWidth="145"
+                style="-fx-background-color: #f0f0f0; -fx-text-fill: #333;
+                       -fx-padding: 10; -fx-background-radius: 8;"/>
+    </HBox>
+</VBox>

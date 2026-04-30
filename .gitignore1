@@ -1,0 +1,20 @@
+# Скомпилированные файлы
+*.class
+*.jar
+*.war
+
+# Папки сборки
+target/
+build/
+out/
+
+# IDE файлы
+.idea/
+*.iml
+.eclipse/
+.settings/
+*.classpath
+*.project
+
+# Maven/Gradle
+.gradle/
