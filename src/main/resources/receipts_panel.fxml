@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ReceiptsPanelController"
+      spacing="12"
+      style="-fx-padding: 16; -fx-background-color: #f8f8f8;">
+
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <Label text="Поступления"
+               style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="+ Добавить поступление" onAction="#handleAdd"
+                style="-fx-background-color: #0F6E56; -fx-text-fill: white;
+                       -fx-padding: 8 16; -fx-background-radius: 8;"/>
+    </HBox>
+
+    <TableView fx:id="receiptsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId"          text="ID"          prefWidth="50"/>
+            <TableColumn fx:id="colProduct"     text="Товар"       prefWidth="180"/>
+            <TableColumn fx:id="colSupplier"    text="Поставщик"   prefWidth="160"/>
+            <TableColumn fx:id="colQuantity"    text="Кол-во"      prefWidth="80"/>
+            <TableColumn fx:id="colDate"        text="Дата"        prefWidth="110"/>
+        </columns>
+    </TableView>
+</VBox>

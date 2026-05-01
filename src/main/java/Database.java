@@ -301,6 +301,76 @@ public class Database {
         }
     }
 
+    public List<Receipt> getAllReceipts() {
+        List<Receipt> list = new ArrayList<>();
+        String sql = "SELECT r.id, r.product_id, p.name as product_name, " +
+                "r.supplier_id, s.name as supplier_name, " +
+                "r.quantity, r.receipt_date " +
+                "FROM receipts r " +
+                "JOIN products p ON r.product_id = p.id " +
+                "JOIN suppliers s ON r.supplier_id = s.id";
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                list.add(new Receipt(
+                        rs.getInt("id"),
+                        rs.getInt("product_id"),
+                        rs.getString("product_name"),
+                        rs.getInt("supplier_id"),
+                        rs.getString("supplier_name"),
+                        rs.getInt("quantity"),
+                        rs.getString("receipt_date")
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println("Ошибка получения поступлений: " + e.getMessage());
+        }
+        return list;
+    }
+
+    public List<Supplier> getAllSuppliers() {
+        List<Supplier> list = new ArrayList<>();
+        String sql = "SELECT * FROM suppliers";
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                list.add(new Supplier(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("phone"),
+                        rs.getString("address")
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println("Ошибка получения поставщиков: " + e.getMessage());
+        }
+        return list;
+    }
+
+    public List<Expense> getAllExpenses() {
+        List<Expense> list = new ArrayList<>();
+        String sql = "SELECT e.id, e.product_id, p.name as product_name, " +
+                "e.quantity, e.expense_date, e.reason " +
+                "FROM expenses e " +
+                "JOIN products p ON e.product_id = p.id";
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                list.add(new Expense(
+                        rs.getInt("id"),
+                        rs.getInt("product_id"),
+                        rs.getString("product_name"),
+                        rs.getInt("quantity"),
+                        rs.getString("expense_date"),
+                        rs.getString("reason")
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println("Ошибка получения расходов: " + e.getMessage());
+        }
+        return list;
+    }
+
     public void addExpense(int productId, int quantity, String date, String reason) {
         String checkSql = "SELECT quantity FROM products WHERE id = ?";
         String insertExpense = "INSERT INTO expenses (product_id, quantity, expense_date, reason) VALUES (?, ?, ?, ?)";

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ReceiptDialogController"
+      spacing="14"
+      style="-fx-padding: 30; -fx-background-color: white;"
+      prefWidth="360">
+
+    <Label text="Добавить поступление"
+           style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+    <VBox spacing="6">
+        <Label text="Товар" style="-fx-font-size: 13px; -fx-text-fill: #555;"/>
+        <ComboBox fx:id="productBox" prefWidth="300"/>
+    </VBox>
+
+    <VBox spacing="6">
+        <Label text="Поставщик" style="-fx-font-size: 13px; -fx-text-fill: #555;"/>
+        <ComboBox fx:id="supplierBox" prefWidth="300"/>
+    </VBox>
+
+    <VBox spacing="6">
+        <Label text="Количество" style="-fx-font-size: 13px; -fx-text-fill: #555;"/>
+        <TextField fx:id="quantityField" promptText="0" prefWidth="300"/>
+    </VBox>
+
+    <VBox spacing="6">
+        <Label text="Дата (ГГГГ-ММ-ДД)" style="-fx-font-size: 13px; -fx-text-fill: #555;"/>
+        <TextField fx:id="dateField" prefWidth="300"/>
+    </VBox>
+
+    <Label fx:id="errorLabel"
+           style="-fx-text-fill: red; -fx-font-size: 12px;" text=""/>
+
+    <HBox spacing="10">
+        <Button text="Сохранить" onAction="#handleSave" prefWidth="135"
+                style="-fx-background-color: #185FA5; -fx-text-fill: white;
+                       -fx-padding: 10; -fx-background-radius: 8;"/>
+        <Button text="Отмена" onAction="#handleCancel" prefWidth="135"
+                style="-fx-background-color: #f0f0f0; -fx-text-fill: #333;
+                       -fx-padding: 10; -fx-background-radius: 8;"/>
+    </HBox>
+</VBox>

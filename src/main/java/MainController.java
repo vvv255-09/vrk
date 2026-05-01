@@ -189,7 +189,23 @@ public class MainController {
     private void showProducts() {
         loadProducts();
     }
-    @FXML private void showReceipts()  { showInfo("Раздел «Поступления» — скоро."); }
+
+    @FXML
+    private void showReceipts() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/receipts_panel.fxml"));
+            VBox panel = loader.load();
+
+            ReceiptsPanelController controller = loader.getController();
+            controller.setDatabase(db);
+
+            rootPane.setCenter(panel);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML private void showExpenses()  { showInfo("Раздел «Расходы» — скоро."); }
     @FXML private void showLowStock()  { showInfo("Раздел «Низкий остаток» — скоро."); }
 
