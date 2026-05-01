@@ -215,7 +215,7 @@ public class MainController {
             db.disconnect();
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/login.fxml"));
-            Stage stage = (Stage) productTable.getScene().getWindow();
+            Stage stage = (Stage) rootPane.getScene().getWindow();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Авторизация");
             stage.show();
