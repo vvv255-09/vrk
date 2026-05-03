@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="LowStockPanelController"
+      spacing="12"
+      style="-fx-padding: 16; -fx-background-color: #f8f8f8;">
+
+    <Label text="⚠️ Товары с низким остатком"
+           style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="lowStockTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId"          text="ID"        prefWidth="50"/>
+            <TableColumn fx:id="colName"        text="Название"  prefWidth="200"/>
+            <TableColumn fx:id="colCategory"    text="Категория" prefWidth="130"/>
+            <TableColumn fx:id="colQuantity"    text="Остаток"   prefWidth="80"/>
+            <TableColumn fx:id="colMinQuantity" text="Минимум"   prefWidth="80"/>
+            <TableColumn fx:id="colUnit"        text="Ед."       prefWidth="60"/>
+        </columns>
+    </TableView>
+</VBox>
