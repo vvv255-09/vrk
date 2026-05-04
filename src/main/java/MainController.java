@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 
 public class MainController {
 
+    @FXML private Button btnReceipts;
+    @FXML private Button btnExpenses;
+    @FXML private Button btnLowStock;
     @FXML private Label userNameLabel;
     @FXML private Label userRoleLabel;
     @FXML private Button btnUsers;
@@ -21,15 +24,23 @@ public class MainController {
         userNameLabel.setText(user.getFullName());
         userRoleLabel.setText(user.getRole());
 
-        if (!user.getRole().equals("admin")) {
-            btnUsers.setVisible(false);
-            btnUsers.setManaged(false);
+        switch (user.getRole()) {
+            case "client" -> {
+                // Клиент видит только товары
+                btnReceipts.setVisible(false);  btnReceipts.setManaged(false);
+                btnExpenses.setVisible(false);  btnExpenses.setManaged(false);
+                btnLowStock.setVisible(false);  btnLowStock.setManaged(false);
+                btnUsers.setVisible(false);     btnUsers.setManaged(false);
+            }
+            case "employee" -> {
+                // Сотрудник не видит пользователей
+                btnUsers.setVisible(false);     btnUsers.setManaged(false);
+            }
+            // admin видит всё
         }
 
         db = new Database("", "", "");
         db.connect();
-
-        // Сразу открываем товары
         showProducts();
     }
 

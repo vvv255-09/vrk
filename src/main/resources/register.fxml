@@ -2,13 +2,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import java.net.URL?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="RegisterController"
       alignment="CENTER"
       spacing="12"
       style="-fx-background-color: #f4f4f4;"
       prefWidth="380" prefHeight="580">
-
+    <stylesheets>
+        <URL value="@styles.css"/>
+    </stylesheets>
     <VBox alignment="CENTER" spacing="14"
           style="-fx-background-color: white; -fx-padding: 40;
                  -fx-background-radius: 12; -fx-max-width: 320;">

@@ -2,11 +2,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import java.net.URL?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="UserDialogController"
       spacing="14"
       style="-fx-padding: 30; -fx-background-color: white;"
       prefWidth="340">
+
+    <stylesheets>
+        <URL value="@styles.css"/>
+    </stylesheets>
 
     <Label text="Добавить пользователя"
            style="-fx-font-size: 16px; -fx-font-weight: bold;"/>

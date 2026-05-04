@@ -2,11 +2,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import java.net.URL?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="ReceiptDialogController"
       spacing="14"
       style="-fx-padding: 30; -fx-background-color: white;"
       prefWidth="360">
+
+    <stylesheets>
+        <URL value="@styles.css"/>
+    </stylesheets>
 
     <Label text="Добавить поступление"
            style="-fx-font-size: 16px; -fx-font-weight: bold;"/>

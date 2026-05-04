@@ -1,0 +1,171 @@
+/* ===== ОБЩИЕ ===== */
+.root {
+    -fx-font-family: "System";
+    -fx-font-size: 13px;
+}
+
+/* ===== КНОПКИ МЕНЮ ===== */
+.menu-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 10 16;
+    -fx-font-size: 13px;
+    -fx-text-fill: #444;
+    -fx-cursor: hand;
+}
+.menu-btn:hover {
+    -fx-background-color: #f0f4f8;
+    -fx-text-fill: #185FA5;
+}
+.menu-btn:pressed {
+    -fx-background-color: #e0eaf5;
+}
+
+/* ===== КНОПКА СИНЯЯ (сохранить, войти) ===== */
+.btn-primary {
+    -fx-background-color: #185FA5;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-padding: 9 20;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+.btn-primary:hover {
+    -fx-background-color: #1470bc;
+}
+.btn-primary:pressed {
+    -fx-background-color: #0f4f8a;
+}
+
+/* ===== КНОПКА ЗЕЛЁНАЯ (добавить) ===== */
+.btn-success {
+    -fx-background-color: #0F6E56;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-padding: 9 20;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+.btn-success:hover {
+    -fx-background-color: #0d5e49;
+}
+
+/* ===== КНОПКА СЕРАЯ (отмена) ===== */
+.btn-secondary {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #333;
+    -fx-background-radius: 8;
+    -fx-padding: 9 20;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+.btn-secondary:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+/* ===== ПОЛЯ ВВОДА ===== */
+.text-field, .password-field, .combo-box {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #d0d0d0;
+    -fx-border-width: 1;
+    -fx-padding: 8 12;
+    -fx-background-color: white;
+}
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #185FA5;
+    -fx-border-width: 1.5;
+}
+
+/* ===== ТАБЛИЦА ===== */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+.table-view .column-header {
+    -fx-background-color: #f5f7fa;
+    -fx-border-color: transparent transparent #e0e0e0 transparent;
+}
+.table-view .column-header .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #555;
+    -fx-font-size: 12px;
+}
+.table-row-cell {
+    -fx-border-color: transparent transparent #f0f0f0 transparent;
+}
+.table-row-cell:hover {
+    -fx-background-color: #f0f4f8;
+}
+.table-row-cell:selected {
+    -fx-background-color: #ddeeff;
+    -fx-text-fill: #111;
+}
+
+/* ===== ЛЕВОЕ МЕНЮ ===== */
+.sidebar {
+    -fx-background-color: white;
+    -fx-border-color: #e8e8e8;
+    -fx-border-width: 0 1 0 0;
+    -fx-min-width: 210px;
+}
+
+/* ===== КАРТОЧКА (форма диалога) ===== */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 30;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 12, 0, 0, 4);
+}
+
+/* ===== ЗАГОЛОВКИ ===== */
+.title-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a1a1a;
+}
+.subtitle-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #888;
+}
+
+/* ===== ЛЕЙБЛ ОШИБКИ ===== */
+.error-label {
+    -fx-text-fill: #c0392b;
+    -fx-font-size: 12px;
+}
+
+/* ===== ЛЕЙБЛ УСПЕХА ===== */
+.success-label {
+    -fx-text-fill: #0F6E56;
+    -fx-font-size: 12px;
+}
+
+/* ===== БЕЙДЖ РОЛИ ===== */
+.badge-admin {
+    -fx-background-color: #E6F1FB;
+    -fx-text-fill: #185FA5;
+    -fx-background-radius: 20;
+    -fx-padding: 2 10;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+.badge-employee {
+    -fx-background-color: #EAF3DE;
+    -fx-text-fill: #3B6D11;
+    -fx-background-radius: 20;
+    -fx-padding: 2 10;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+.badge-client {
+    -fx-background-color: #FFF3E0;
+    -fx-text-fill: #854F0B;
+    -fx-background-radius: 20;
+    -fx-padding: 2 10;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}

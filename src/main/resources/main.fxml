@@ -2,11 +2,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import java.net.URL?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="MainController"
             fx:id="rootPane"
             prefWidth="900" prefHeight="550">
-
+    <stylesheets>
+        <URL value="@styles.css"/>
+    </stylesheets>
     <left>
         <VBox style="-fx-background-color: white; -fx-border-color: #e0e0e0;
                      -fx-border-width: 0 1 0 0; -fx-min-width: 200px;">
@@ -20,16 +23,11 @@
             </VBox>
 
             <VBox spacing="0" style="-fx-padding: 8 0 0 0;">
-                <Button text="📦  Товары"        onAction="#showProducts"
-                        maxWidth="Infinity" style="-fx-padding: 10 16; -fx-background-color: transparent; -fx-border-color: transparent; -fx-alignment: CENTER-LEFT;"/>
-                <Button text="📥  Поступления"   onAction="#showReceipts"
-                        maxWidth="Infinity" style="-fx-padding: 10 16; -fx-background-color: transparent; -fx-border-color: transparent; -fx-alignment: CENTER-LEFT;"/>
-                <Button text="📤  Расходы"       onAction="#showExpenses"
-                        maxWidth="Infinity" style="-fx-padding: 10 16; -fx-background-color: transparent; -fx-border-color: transparent; -fx-alignment: CENTER-LEFT;"/>
-                <Button text="⚠️  Низкий остаток" onAction="#showLowStock"
-                        maxWidth="Infinity" style="-fx-padding: 10 16; -fx-background-color: transparent; -fx-border-color: transparent; -fx-alignment: CENTER-LEFT;"/>
-                <Button fx:id="btnUsers" text="👥  Пользователи" onAction="#showUsers"
-                        maxWidth="Infinity" style="-fx-padding: 10 16; -fx-background-color: transparent; -fx-border-color: transparent; -fx-alignment: CENTER-LEFT;"/>
+                <Button fx:id="btnProducts"  text="📦  Товары"         onAction="#showProducts" maxWidth="Infinity" styleClass="menu-btn"/>
+                <Button fx:id="btnReceipts"  text="📥  Поступления"    onAction="#showReceipts" maxWidth="Infinity" styleClass="menu-btn"/>
+                <Button fx:id="btnExpenses"  text="📤  Расходы"        onAction="#showExpenses" maxWidth="Infinity" styleClass="menu-btn"/>
+                <Button fx:id="btnLowStock"  text="⚠️  Низкий остаток" onAction="#showLowStock" maxWidth="Infinity" styleClass="menu-btn"/>
+                <Button fx:id="btnUsers"     text="👥  Пользователи"   onAction="#showUsers"    maxWidth="Infinity" styleClass="menu-btn"/>
             </VBox>
 
             <Region VBox.vgrow="ALWAYS"/>
