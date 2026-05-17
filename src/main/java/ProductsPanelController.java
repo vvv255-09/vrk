@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
 import java.util.List;
 
 public class ProductsPanelController {
@@ -29,13 +30,16 @@ public class ProductsPanelController {
         this.db = db;
         loadProducts();
     }
+    private boolean isClient = false;
 
     public void setUser(User user) {
         this.currentUser = user;
-        if (!user.getRole().equals("admin")) {
+        if (!user.getRole().equals("admin") && !user.getRole().equals("employee")) {
             btnAdd.setVisible(false);
             btnAdd.setManaged(false);
         }
+        // Флаг для скрытия кнопок в таблице
+        this.isClient = user.getRole().equals("client");
     }
 
     public void initialize() {
@@ -52,26 +56,40 @@ public class ProductsPanelController {
         colMinQuantity.setCellValueFactory(d ->
                 new SimpleStringProperty(String.valueOf(d.getValue().getMinQuantity())));
         colPrice.setCellValueFactory(d ->
-                new SimpleStringProperty(d.getValue().getPrice() + " ₽"));
+                new SimpleStringProperty(d.getValue().getPrice() + " сом"));
 
         colActions.setCellFactory(col -> new TableCell<>() {
+            private final Button btnCard   = new Button("📋");
             private final Button btnEdit   = new Button("Изменить");
             private final Button btnDelete = new Button("Удалить");
-            private final HBox box = new HBox(6, btnEdit, btnDelete);
+            private final HBox box = new HBox(6, btnCard, btnEdit, btnDelete);
+
             {
+                btnCard.setStyle(
+                        "-fx-font-size:11px; -fx-background-color:#EAF3DE; -fx-text-fill:#3B6D11;");
                 btnEdit.setStyle(
                         "-fx-font-size:11px; -fx-background-color:#E6F1FB; -fx-text-fill:#185FA5;");
                 btnDelete.setStyle(
                         "-fx-font-size:11px; -fx-background-color:#FCEBEB; -fx-text-fill:#A32D2D;");
+
+                btnCard.setOnAction(e -> openCard(
+                        getTableView().getItems().get(getIndex())));
                 btnEdit.setOnAction(e -> handleEdit(
                         getTableView().getItems().get(getIndex())));
                 btnDelete.setOnAction(e -> handleDelete(
                         getTableView().getItems().get(getIndex())));
             }
+
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
-                setGraphic(empty ? null : box);
+                if (empty) { setGraphic(null); return; }
+                if (isClient) {
+                    // Клиент видит только карточку
+                    setGraphic(new HBox(6, btnCard));
+                } else {
+                    setGraphic(box);
+                }
             }
         });
     }
@@ -122,6 +140,23 @@ public class ProductsPanelController {
 
             dialog.showAndWait();
             loadProducts();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openCard(Product product) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/product_card.fxml"));
+            Stage dialog = new Stage();
+            dialog.setScene(new Scene(loader.load()));
+            dialog.setTitle("Карточка: " + product.getName());
+
+            ProductCardController controller = loader.getController();
+            controller.setData(product, db);
+
+            dialog.show();
         } catch (Exception e) {
             e.printStackTrace();
         }

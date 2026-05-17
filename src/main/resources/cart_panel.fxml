@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="CartPanelController"
+      spacing="12"
+      style="-fx-padding: 16; -fx-background-color: #f8f8f8;">
+
+    <Label text="🛒 Корзина"
+           style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+    <!-- Список товаров для добавления -->
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <ComboBox fx:id="productBox" prefWidth="250"
+                  promptText="Выберите товар..."/>
+        <TextField fx:id="quantityField" promptText="Кол-во"
+                   prefWidth="80"/>
+        <Button text="+ В корзину" onAction="#handleAddToCart"
+                style="-fx-background-color: #0F6E56; -fx-text-fill: white;
+                       -fx-padding: 8 16; -fx-background-radius: 8;"/>
+    </HBox>
+
+    <Label fx:id="errorLabel"
+           style="-fx-text-fill: red; -fx-font-size: 12px;" text=""/>
+
+    <!-- Таблица корзины -->
+    <TableView fx:id="cartTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colName"     text="Товар"    prefWidth="200"/>
+            <TableColumn fx:id="colPrice"    text="Цена"     prefWidth="100"/>
+            <TableColumn fx:id="colQty"      text="Кол-во"   prefWidth="80"/>
+            <TableColumn fx:id="colTotal"    text="Сумма"    prefWidth="100"/>
+            <TableColumn fx:id="colRemove"   text=""         prefWidth="80"/>
+        </columns>
+    </TableView>
+
+    <!-- Итого и кнопка оформить -->
+    <HBox spacing="12" alignment="CENTER_RIGHT">
+        <Label text="Итого:"
+               style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+        <Label fx:id="totalLabel" text="0.00 сом"
+               style="-fx-font-size: 16px; -fx-font-weight: bold;
+                      -fx-text-fill: #185FA5;"/>
+        <Button text="Оформить заказ" onAction="#handleOrder"
+                style="-fx-background-color: #185FA5; -fx-text-fill: white;
+                       -fx-padding: 10 24; -fx-background-radius: 8;"/>
+    </HBox>
+</VBox>

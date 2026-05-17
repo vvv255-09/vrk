@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ReportPanelController"
+      spacing="16"
+      style="-fx-padding: 16; -fx-background-color: #f8f8f8;">
+
+    <Label text="📊 Отчёт по складу"
+           style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+    <!-- Карточки сводки -->
+    <HBox spacing="12">
+        <VBox styleClass="report-card" spacing="4" HBox.hgrow="ALWAYS"
+              style="-fx-background-color: white; -fx-padding: 16;
+                     -fx-background-radius: 10; -fx-border-color: #e0e0e0;
+                     -fx-border-radius: 10;">
+            <Label text="Всего товаров"
+                   style="-fx-text-fill: #888; -fx-font-size: 12px;"/>
+            <Label fx:id="totalProductsLabel" text="0"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #185FA5;"/>
+        </VBox>
+        <VBox styleClass="report-card" spacing="4" HBox.hgrow="ALWAYS"
+              style="-fx-background-color: white; -fx-padding: 16;
+                     -fx-background-radius: 10; -fx-border-color: #e0e0e0;
+                     -fx-border-radius: 10;">
+            <Label text="Общая стоимость"
+                   style="-fx-text-fill: #888; -fx-font-size: 12px;"/>
+            <Label fx:id="totalValueLabel" text="0 ₽"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #0F6E56;"/>
+        </VBox>
+        <VBox styleClass="report-card" spacing="4" HBox.hgrow="ALWAYS"
+              style="-fx-background-color: white; -fx-padding: 16;
+                     -fx-background-radius: 10; -fx-border-color: #e0e0e0;
+                     -fx-border-radius: 10;">
+            <Label text="Низкий остаток"
+                   style="-fx-text-fill: #888; -fx-font-size: 12px;"/>
+            <Label fx:id="lowStockLabel" text="0"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #c0392b;"/>
+        </VBox>
+        <VBox styleClass="report-card" spacing="4" HBox.hgrow="ALWAYS"
+              style="-fx-background-color: white; -fx-padding: 16;
+                     -fx-background-radius: 10; -fx-border-color: #e0e0e0;
+                     -fx-border-radius: 10;">
+            <Label text="Поступлений"
+                   style="-fx-text-fill: #888; -fx-font-size: 12px;"/>
+            <Label fx:id="totalReceiptsLabel" text="0"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #854F0B;"/>
+        </VBox>
+    </HBox>
+
+    <!-- Таблица по категориям -->
+    <Label text="По категориям"
+           style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="categoryTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colCategory"  text="Категория"       prefWidth="200"/>
+            <TableColumn fx:id="colCount"     text="Кол-во позиций"  prefWidth="150"/>
+            <TableColumn fx:id="colTotal"     text="Общее кол-во"    prefWidth="150"/>
+            <TableColumn fx:id="colValue"     text="Стоимость"       prefWidth="150"/>
+        </columns>
+    </TableView>
+
+</VBox>

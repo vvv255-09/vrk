@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="OrdersPanelController"
+      spacing="12"
+      style="-fx-padding: 16; -fx-background-color: #f8f8f8;">
+
+    <Label text="📦 Мои заказы"
+           style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="ordersTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId"     text="№"        prefWidth="60"/>
+            <TableColumn fx:id="colDate"   text="Дата"     prefWidth="160"/>
+            <TableColumn fx:id="colStatus" text="Статус"   prefWidth="130"/>
+            <TableColumn fx:id="colTotal"  text="Сумма"    prefWidth="120"/>
+            <TableColumn fx:id="colItems"  text="Состав"   prefWidth="100"/>
+        </columns>
+    </TableView>
+</VBox>

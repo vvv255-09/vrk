@@ -28,6 +28,20 @@
                 <Button fx:id="btnExpenses"  text="📤  Расходы"        onAction="#showExpenses" maxWidth="Infinity" styleClass="menu-btn"/>
                 <Button fx:id="btnLowStock"  text="⚠️  Низкий остаток" onAction="#showLowStock" maxWidth="Infinity" styleClass="menu-btn"/>
                 <Button fx:id="btnUsers"     text="👥  Пользователи"   onAction="#showUsers"    maxWidth="Infinity" styleClass="menu-btn"/>
+                <Button fx:id="btnReport"  text="📊  Отчёт"           onAction="#showReport"
+                        maxWidth="Infinity" styleClass="menu-btn"/>
+                <Button fx:id="btnHistory" text="🕐  История операций" onAction="#showHistory"
+                        maxWidth="Infinity" styleClass="menu-btn"/>
+                <Button fx:id="btnWriteOff" text="🗑️  Списание/Брак"
+                        onAction="#showWriteOff"
+                        maxWidth="Infinity" styleClass="menu-btn"/>
+                <Button fx:id="btnCart"   text="🛒  Корзина"       onAction="#showCart"
+                        maxWidth="Infinity" styleClass="menu-btn"/>
+                <Button fx:id="btnOrders" text="📦  Мои заказы"    onAction="#showOrders"
+                        maxWidth="Infinity" styleClass="menu-btn"/>
+                <Button fx:id="btnAdminOrders" text="📋  Заказы клиентов"
+                        onAction="#showAdminOrders"
+                        maxWidth="Infinity" styleClass="menu-btn"/>
             </VBox>
 
             <Region VBox.vgrow="ALWAYS"/>
