@@ -79,6 +79,7 @@
                             <generateInstaller>false</generateInstaller>
                             <administratorRequired>false</administratorRequired>
                             <platform>mac</platform>
+                            <jdkPath>/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home</jdkPath>
                         </configuration>
                     </execution>
                 </executions>

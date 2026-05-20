@@ -9,6 +9,7 @@ public class LoginController {
     @FXML private TextField loginField;
     @FXML private PasswordField passwordField;
     @FXML private Label errorLabel;
+    @FXML private TextField hostField;
 
     private Database db;
 
@@ -23,6 +24,11 @@ public class LoginController {
 
     @FXML
     private void handleLogin() {
+        String host = hostField.getText().trim();
+        if (!host.isEmpty()) {
+            Database.setHost(host);
+        }
+
         String login = loginField.getText().trim();
         String password = passwordField.getText().trim();
 
@@ -30,6 +36,9 @@ public class LoginController {
             errorLabel.setText("Заполните все поля.");
             return;
         }
+
+        db = new Database("", "", "");
+        db.connect();
 
         User user = db.loginUser(login, password);
 

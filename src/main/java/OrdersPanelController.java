@@ -28,7 +28,7 @@ public class OrdersPanelController {
                 new SimpleStringProperty(d.getValue().getOrderDate()));
         colTotal.setCellValueFactory(d ->
                 new SimpleStringProperty(
-                        String.format("%.2f ₽", d.getValue().getTotalPrice())));
+                        String.format("%.2f сом", d.getValue().getTotalPrice())));
 
         // Цветной статус
         colStatus.setCellFactory(col -> new TableCell<>() {
@@ -87,12 +87,12 @@ public class OrdersPanelController {
         for (var item : db.getOrderItems(order.getId())) {
             sb.append("• ").append(item.getProductName())
                     .append(" — ").append(item.getQuantity()).append(" шт")
-                    .append(" × ").append(String.format("%.2f ₽", item.getPrice()))
+                    .append(" × ").append(String.format("%.2f сом", item.getPrice()))
                     .append(" = ").append(
-                            String.format("%.2f ₽", item.getPrice() * item.getQuantity()))
+                            String.format("%.2f сом", item.getPrice() * item.getQuantity()))
                     .append("\n");
         }
-        sb.append("\nИтого: ").append(String.format("%.2f ₽", order.getTotalPrice()));
+        sb.append("\nИтого: ").append(String.format("%.2f сом", order.getTotalPrice()));
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Состав заказа");

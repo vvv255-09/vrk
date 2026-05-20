@@ -9,15 +9,21 @@ public class Database {
     private final String password;
     private Connection connection;
 
+    private static String DB_HOST = "localhost";
+
     public Database(String url, String user, String password) {
-        this.url = "jdbc:mysql://localhost:3306/warehouse_system";
-        this.user = "root";
-        this.password = "19120355";
+        this.url = "jdbc:mysql://" + DB_HOST + ":3306/warehouse_system";
+        this.user = "tsar";
+        this.password = "tsar123";
+    }
+
+    public static void setHost(String host) {
+        DB_HOST = host;
     }
 
     public void connect() {
         try {
-            connection = DriverManager.getConnection(url, user, password);
+            connection = DriverManager.getConnection(this.url, this.user, this.password);
             System.out.println("Подключение к БД успешно.");
         } catch (SQLException e) {
             System.out.println("Ошибка подключения к БД: " + e.getMessage());
@@ -375,23 +381,29 @@ public class Database {
     public List<String> getOperationsHistory() {
         List<String> history = new ArrayList<>();
 
-        String receiptSql = "SELECT r.receipt_date, p.name, r.quantity, s.name as supplier " +
+        String receiptSql = "SELECT r.receipt_date as date, p.name, r.quantity, s.name as supplier " +
                 "FROM receipts r " +
                 "JOIN products p ON r.product_id = p.id " +
                 "JOIN suppliers s ON r.supplier_id = s.id " +
                 "ORDER BY r.receipt_date DESC LIMIT 50";
 
-        String expenseSql = "SELECT e.expense_date, p.name, e.quantity, e.reason " +
+        String expenseSql = "SELECT e.expense_date as date, p.name, e.quantity, e.reason " +
                 "FROM expenses e " +
                 "JOIN products p ON e.product_id = p.id " +
                 "ORDER BY e.expense_date DESC LIMIT 50";
 
+        String orderSql = "SELECT o.order_date as date, u.full_name, o.total_price, " +
+                "o.status, o.id as order_id " +
+                "FROM orders o " +
+                "JOIN users u ON o.user_id = u.id " +
+                "ORDER BY o.order_date DESC LIMIT 50";
+
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(receiptSql)) {
             while (rs.next()) {
-                history.add("📥 " + rs.getString("receipt_date") +
-                        " | Поступление: " + rs.getString("name") +
-                        " — " + rs.getInt("quantity") + " шт" +
+                history.add("📥 " + rs.getString("date") +
+                        " | Поступление: +" + rs.getInt("quantity") +
+                        " шт — " + rs.getString("name") +
                         " от " + rs.getString("supplier"));
             }
         } catch (SQLException e) {
@@ -401,16 +413,28 @@ public class Database {
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(expenseSql)) {
             while (rs.next()) {
-                history.add("📤 " + rs.getString("expense_date") +
-                        " | Расход: " + rs.getString("name") +
-                        " — " + rs.getInt("quantity") + " шт" +
+                history.add("📤 " + rs.getString("date") +
+                        " | Расход: -" + rs.getInt("quantity") +
+                        " шт — " + rs.getString("name") +
                         " (" + rs.getString("reason") + ")");
             }
         } catch (SQLException e) {
             System.out.println("Ошибка истории расходов: " + e.getMessage());
         }
 
-        // Сортируем по дате
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(orderSql)) {
+            while (rs.next()) {
+                history.add("🛒 " + rs.getString("date") +
+                        " | Заказ #" + rs.getInt("order_id") +
+                        " — " + rs.getString("full_name") +
+                        " | " + String.format("%.2f сом", rs.getDouble("total_price")) +
+                        " | " + rs.getString("status"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Ошибка истории заказов: " + e.getMessage());
+        }
+
         Collections.sort(history, Collections.reverseOrder());
         return history;
     }

@@ -55,12 +55,12 @@ public class CartPanelController {
                 new SimpleStringProperty(d.getValue().getProductName()));
         colPrice.setCellValueFactory(d ->
                 new SimpleStringProperty(
-                        String.format("%.2f ₽", d.getValue().getPrice())));
+                        String.format("%.2f сом", d.getValue().getPrice())));
         colQty.setCellValueFactory(d ->
                 new SimpleStringProperty(String.valueOf(d.getValue().getQuantity())));
         colTotal.setCellValueFactory(d ->
                 new SimpleStringProperty(
-                        String.format("%.2f ₽",
+                        String.format("%.2f сом",
                                 d.getValue().getPrice() * d.getValue().getQuantity())));
 
         // Кнопка удалить из корзины
@@ -142,7 +142,7 @@ public class CartPanelController {
 
         // Подтверждение
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
-                "Оформить заказ на сумму " + String.format("%.2f ₽", total) + "?",
+                "Оформить заказ на сумму " + String.format("%.2f сом", total) + "?",
                 ButtonType.YES, ButtonType.NO);
         confirm.setTitle("Подтверждение заказа");
         confirm.showAndWait().ifPresent(btn -> {
@@ -154,7 +154,7 @@ public class CartPanelController {
                                 item.getQuantity(), item.getPrice());
                     }
                     cartItems.clear();
-                    totalLabel.setText("0.00 ₽");
+                    totalLabel.setText("0.00 сом");
 
                     Alert success = new Alert(Alert.AlertType.INFORMATION,
                             "Заказ #" + orderId + " успешно оформлен!",
@@ -170,6 +170,6 @@ public class CartPanelController {
         double total = cartItems.stream()
                 .mapToDouble(i -> i.getPrice() * i.getQuantity())
                 .sum();
-        totalLabel.setText(String.format("%.2f ₽", total));
+        totalLabel.setText(String.format("%.2f сом", total));
     }
 }

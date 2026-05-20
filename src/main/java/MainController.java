@@ -33,37 +33,33 @@ public class MainController {
 
         switch (user.getRole()) {
             case "client" -> {
-                btnReceipts.setVisible(false);
-                btnReceipts.setManaged(false);
-                btnExpenses.setVisible(false);
-                btnExpenses.setManaged(false);
-                btnLowStock.setVisible(false);
-                btnLowStock.setManaged(false);
-                btnUsers.setVisible(false);
-                btnUsers.setManaged(false);
-                btnReport.setVisible(false);
-                btnReport.setManaged(false);
-                btnHistory.setVisible(false);
-                btnHistory.setManaged(false);
-                btnWriteOff.setVisible(false);
-                btnWriteOff.setManaged(false);
-                btnAdminOrders.setVisible(false);
-                btnAdminOrders.setManaged(false);
+                btnReceipts.setVisible(false);   btnReceipts.setManaged(false);
+                btnExpenses.setVisible(false);   btnExpenses.setManaged(false);
+                btnLowStock.setVisible(false);   btnLowStock.setManaged(false);
+                btnUsers.setVisible(false);      btnUsers.setManaged(false);
+                btnReport.setVisible(false);     btnReport.setManaged(false);
+                btnHistory.setVisible(false);    btnHistory.setManaged(false);
+                btnWriteOff.setVisible(false);   btnWriteOff.setManaged(false);
+                btnAdminOrders.setVisible(false); btnAdminOrders.setManaged(false);
             }
-            case "employee", "admin" -> {
-                btnCart.setVisible(false);
-                btnCart.setManaged(false);
-                btnOrders.setVisible(false);
-                btnOrders.setManaged(false);
+            case "employee" -> {
+                // Сотрудник не видит пользователей и отчёт
+                btnUsers.setVisible(false);      btnUsers.setManaged(false);
+                btnReport.setVisible(false);     btnReport.setManaged(false);
+                // Корзина и заказы только для клиента
+                btnCart.setVisible(false);       btnCart.setManaged(false);
+                btnOrders.setVisible(false);     btnOrders.setManaged(false);
+            }
+            case "admin" -> {
+                // Корзина и заказы только для клиента
+                btnCart.setVisible(false);       btnCart.setManaged(false);
+                btnOrders.setVisible(false);     btnOrders.setManaged(false);
             }
         }
-
-
 
         db = new Database("", "", "");
         db.connect();
         showProducts();
-        // Уведомление о низком остатке
         checkLowStock();
     }
 

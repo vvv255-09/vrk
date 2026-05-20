@@ -41,7 +41,7 @@
                      -fx-background-radius: 8;">
             <Label text="Цена"
                    style="-fx-font-size: 11px; -fx-text-fill: #854F0B;"/>
-            <Label fx:id="priceLabel" text="0 ₽"
+            <Label fx:id="priceLabel" text="0 сом"
                    style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #854F0B;"/>
         </VBox>
     </HBox>

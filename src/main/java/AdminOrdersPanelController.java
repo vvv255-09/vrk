@@ -28,7 +28,7 @@ public class AdminOrdersPanelController {
                 new SimpleStringProperty(d.getValue().getOrderDate()));
         colTotal.setCellValueFactory(d ->
                 new SimpleStringProperty(
-                        String.format("%.2f ₽", d.getValue().getTotalPrice())));
+                        String.format("%.2f сом", d.getValue().getTotalPrice())));
 
         // Имя клиента
         colUser.setCellValueFactory(d ->
