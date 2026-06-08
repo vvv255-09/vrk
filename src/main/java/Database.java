@@ -453,6 +453,14 @@ public class Database {
                 "WHERE e.product_id = ? " +
                 "ORDER BY e.expense_date DESC";
 
+        String orderSql = "SELECT o.order_date, oi.quantity, oi.price, " +
+                "u.full_name, o.id as order_id, o.status " +
+                "FROM order_items oi " +
+                "JOIN orders o ON oi.order_id = o.id " +
+                "JOIN users u ON o.user_id = u.id " +
+                "WHERE oi.product_id = ? " +
+                "ORDER BY o.order_date DESC";
+
         try (PreparedStatement stmt = connection.prepareStatement(receiptSql)) {
             stmt.setInt(1, productId);
             ResultSet rs = stmt.executeQuery();
@@ -475,6 +483,20 @@ public class Database {
             }
         } catch (SQLException e) {
             System.out.println("Ошибка истории расходов: " + e.getMessage());
+        }
+
+        try (PreparedStatement stmt = connection.prepareStatement(orderSql)) {
+            stmt.setInt(1, productId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                history.add("🛒 " + rs.getString("order_date") +
+                        " | Заказ #" + rs.getInt("order_id") +
+                        ": -" + rs.getInt("quantity") + " шт" +
+                        " | " + rs.getString("full_name") +
+                        " | " + rs.getString("status"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Ошибка истории заказов: " + e.getMessage());
         }
 
         Collections.sort(history, Collections.reverseOrder());

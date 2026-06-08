@@ -60,7 +60,9 @@ public class MainController {
         db = new Database("", "", "");
         db.connect();
         showProducts();
-        checkLowStock();
+        if (user.getRole().equals("admin") || user.getRole().equals("employee")) {
+            checkLowStock();
+        }
     }
 
     private void checkLowStock() {
