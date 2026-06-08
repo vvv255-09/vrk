@@ -76,8 +76,15 @@
                         <configuration>
                             <mainClass>MainApp</mainClass>
                             <bundleJre>true</bundleJre>
+                            <customizedJre>false</customizedJre>
                             <generateInstaller>false</generateInstaller>
                             <administratorRequired>false</administratorRequired>
+                            <platform>windows</platform>
+                            <winConfig>
+                                <generateSetup>false</generateSetup>
+                                <generateMsi>false</generateMsi>
+                                <generateMsm>false</generateMsm>
+                            </winConfig>
                         </configuration>
                     </execution>
                 </executions>
